@@ -1,36 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./ItemDetailContainer.css";
-
-import Spinner from "../../components/LoadingSpinner/index";
-import CartView from "../../components/CartView/CartView";
-
-import { getDoc, doc} from 'firebase/firestore'
+import LoadingSpinner from "../../components/LoadingSpinner/index";
+import ItemDetail from "../../components/ItemDetail/ItemDetail";
+import { collection, query, where, getDocs, doc } from "firebase/firestore";
 import { db } from "../../services/FireStore";
 
-const ItemDetailContainer = () => {
-  const [product, setProduct] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  const { itemId } = useParams
+function ItemDetailContainer() {
+  const [producto, setProducto] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { itemid } = useParams();
 
   useEffect(() => {
-    setLoading(true)
+    const getProducto = async () => {
+      try {
+        const q = query(collection(db, "items"), where("id", "==", itemid));
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map((doc) => doc.data());
+        if (data.length > 0) {
+          setProducto(data[0]);
+        } else {
+          setProducto(null);
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    const docRef = doc(db, 'products', itemId)
-    getDoc(docRef)
-    .then(response => {
-      const data = response.data()
-      const productAdapted = { id: response.id, ...data}
-      setProduct(productAdapted)
-    })
-    .catch(error => {
-      console.log(error)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
-  }, {itemId})
+    getProducto();
+  }, [itemid]);
+
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (!producto) {
+    return <p>No se encontró el producto con el ID: {itemid}</p>;
+  }
+
+  return (
+    <section id="menu" className="text-center container">
+      <div className="album bg-degrade">
+        <div className="container">
+          <div className="">
+            <ItemDetail detalle={producto} />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default ItemDetailContainer
+export default ItemDetailContainer;
