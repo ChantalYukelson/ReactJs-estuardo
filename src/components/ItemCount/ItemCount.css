@@ -1,0 +1,24 @@
+.Counter {
+  display: flex;
+  align-items: center;
+}
+
+.Controla {
+  display: flex;
+  align-items: center;
+}
+
+.Button {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.Button:hover {
+  background-color: black;
+  color: white;
+}
+
+.Number {
+  margin: 0 10px;
+}
+

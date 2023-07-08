@@ -1,0 +1,17 @@
+.heroportada {
+    background-image: url(../../assets/images/estuardo.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.custom-btn {
+    background-color: #343a40; /* Color gris oscuro */
+    color: #fff; /* Color de texto blanco */
+  }
+  
+  .custom-btn:hover {
+    background-color: #000; /* Color de fondo negro en el hover */
+  }
+  
