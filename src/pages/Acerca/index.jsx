@@ -25,7 +25,7 @@ function Acerca() {
           <div className="row mx-auto align-middle text-center py-4">
            
             <div className="col-lg-4 mx-auto">
-              <img src={logo} className="img-fluid mx-auto" alt="Lorena Malamud" />
+              <img src={logo} className="img-fluid mx-auto" alt="Logo" />
               <h2>Nuestra historia </h2>
               <p><Link to="" className="btn btn-secondary">Más info »</Link></p>
             </div>

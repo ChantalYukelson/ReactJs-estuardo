@@ -2,10 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import local from '../../assets/images/local.jpg';
+import estuardo from '../../assets/images/estuardo.png'
 import './Inicio.css'
 import '../../assets/css/animaciones.css'
 import LoadingSpinner from '../../components/LoadingSpinner/';
-
 
 function Inicio() {
   
@@ -23,7 +23,10 @@ function Inicio() {
   }
   return (
 <div>
-<section className="heroportada position-relative pt-48 pb-80 bg-dark bg-cover bg-size--cover slide-in-fwd-center">
+  <section>
+  <img src={estuardo} className="img-fluid mx-auto" alt="banner" />
+  </section>
+<section className="heroportada position-relative pt-48 pb-80 bg- bg-cover bg-size--cover slide-in-fwd-center">
   {/* Overlay */}
   <span className="position-absolute top-0 start-0 w-full h-full bg-dark opacity-80" />
   {/* Contenido */}
@@ -54,7 +57,7 @@ function Inicio() {
 
 
   <section>
-    <article>
+    <article className='gradient-background'>
       
       {/* Call to action o hero para desktops */}
       <div className="container col-xxl-8 px-4 py-2 d-none d-lg-block">

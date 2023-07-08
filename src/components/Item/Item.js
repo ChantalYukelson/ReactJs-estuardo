@@ -32,11 +32,12 @@ function Item({ item }) {
       </LinkContainer>
       <Card.Body></Card.Body>
       <Container className="d-flex justify-content-center text-center align-middle w-100 mw-30">
-        <Badge bg="success me-2 mb-4 text-center">{price} $</Badge>
+    <Badge bg="success me-2 mb-4 text-center price-button">{price} $</Badge>
       </Container>
       <LinkContainer to={`/item/${item.id}`}>
-        <Button className="btn btn-info">Ver detalles</Button>
-      </LinkContainer>
+  <Button className="btn btn-dark btn-hover-white">Ver detalles</Button>
+</LinkContainer>
+
       
     </Card>
   );

@@ -18,3 +18,12 @@
 .picHover{
 cursor: pointer;
 }
+
+.price-button {
+  background-color: gray;
+  color: white;
+}
+
+.price-button:hover{
+  background-color: lightgray;
+}
