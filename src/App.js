@@ -9,7 +9,6 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { CartContextProvider } from './store/CartContext';
 import CheckOut from './pages/CheckOut/index';
 import Inicio from './pages/Inicio/index';
-import Servicios from './pages/Servicios/index';
 import Acerca from './pages/Acerca/index';
 import Contacto from './pages/Contacto/index';
 import firebaseApp from './services/FireStore';
@@ -23,7 +22,6 @@ function App() {
           <main>
             <Routes>
               <Route path="/inicio" element={<Inicio />} />
-              <Route path="/servicios" element={<Servicios />} />
               <Route path="/acercade" element={<Acerca />} />
               <Route path="/contacto" element={<Contacto />} />
               <Route path="/checkout" element={<CheckOut />} />

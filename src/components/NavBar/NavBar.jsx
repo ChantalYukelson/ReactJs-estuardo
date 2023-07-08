@@ -25,7 +25,6 @@ function NavBar(props) {
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">
         <LinkContainer onClick={() => setExpanded(false)} to="/inicio"><Nav.Link href="#home">Inicio</Nav.Link></LinkContainer>
-        <LinkContainer onClick={() => setExpanded(false)} to="/servicios"><Nav.Link href="/servicios">Servicios</Nav.Link></LinkContainer>
         <LinkContainer onClick={() => setExpanded(false)} to="/acercade"><Nav.Link href="/acercade">Acerca</Nav.Link></LinkContainer>
         <LinkContainer onClick={() => setExpanded(false)} to="/contacto"><Nav.Link href="/contacto">Contacto</Nav.Link></LinkContainer>
         

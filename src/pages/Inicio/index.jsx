@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import torta from '../../assets/images/torta.webp';
+import local from '../../assets/images/local.jpg';
 import './Inicio.css'
 import '../../assets/css/animaciones.css'
 import LoadingSpinner from '../../components/LoadingSpinner/';
@@ -12,7 +12,7 @@ function Inicio() {
   document.title = 'Estuardo Inicio';
 
 
-  if(torta === undefined){
+  if(local === undefined){
     return <section id="menu" className="py-5 text-center container">
     <div className="album bg-degrade py-5">
     <div className="container">
@@ -60,10 +60,10 @@ function Inicio() {
       <div className="container col-xxl-8 px-4 py-2 d-none d-lg-block">
         <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
           <div className="col-10 col-sm-8 col-lg-6">
-            <img src={torta} className="d-block mx-lg-auto img-fluid" alt="Pedí Online" width={700} height={500} loading="lazy" />
+            <img src={local} className="d-block mx-lg-auto img-fluid" alt="Pedí Online" width={700} height={500} loading="lazy" />
           </div>
           <div className="col-lg-6">
-            <h1 className="display-5 fw-bold lh-1 mb-3">¡No te quedes sin tu ropa!</h1>
+            <h1 className="display-5 fw-bold lh-1 mb-3">Consegui ropa de calidad a increibles precios</h1>
             <p className="lead">No pierdas tiempo y compra tu ropa en segundos</p>
             <div className="d-grid gap-2 d-md-flex justify-content-md-start">
               <Link to=""><button type="button" className="btn btn-primary btn-lg px-4 me-md-2">Productos</button></Link>
