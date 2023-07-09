@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/index";
 import ItemDetail from "../../components/ItemDetail/ItemDetail";
-import { collection, query, where, getDocs, doc } from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../services/FireStore";
 
 function ItemDetailContainer() {

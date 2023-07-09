@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Card, Badge, Container } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom'; // Importar el componente Link
 import useCartContext from '../../store/CartContext';
 import './Item.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,18 +27,16 @@ function Item({ item }) {
           </div>
         )}
       </span>
-      <LinkContainer to={`/item/${item.id}`}>
+      <Link to={`/item/${item.id}`}> {/* Envolver el botón "Ver detalles" con el componente Link */}
         <Card.Img className="picHover" variant="top" src={img} alt={name} />
-      </LinkContainer>
+      </Link>
       <Card.Body></Card.Body>
       <Container className="d-flex justify-content-center text-center align-middle w-100 mw-30">
-    <Badge bg="success me-2 mb-4 text-center price-button">{price} $</Badge>
+        <Badge bg="success me-2 mb-4 text-center price-button">{price} $</Badge>
       </Container>
-      <LinkContainer to={`/item/${item.id}`}>
-  <Button className="btn btn-dark btn-hover-white">Ver detalles</Button>
-</LinkContainer>
-
-      
+      <Link to={`/item/${item.id}`}> {/* Envolver el botón "Ver detalles" con el componente Link */}
+        <Button className="btn btn-dark btn-hover-white">Ver detalles</Button>
+      </Link>
     </Card>
   );
 }

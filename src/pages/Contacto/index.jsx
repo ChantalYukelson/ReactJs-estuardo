@@ -3,7 +3,7 @@ import './Contacto.css';
 import '../../assets/css/animaciones.css'
 
 function Contacto() {
-    document.title = 'Ojala Te Enamores Contacto';
+    document.title = 'Estuardo Contacto';
   return (
     <section className="slide-in-fwd-center">
   {/* Formulario de contacto - no funcional basado en https://www.freecontactform.com/form-guides/html-email-form*/}
@@ -13,8 +13,8 @@ function Contacto() {
         <h3 className="mb-2 text-white">Info</h3>
         <div className="info text-light .fs-6">
      
-          <p>clasesojala@gmail.com</p>
-          11 2324 2343
+          <p>estuardo.ginzburg@gmail.com</p>
+          11 5617 2364
           <div className="social-icons">
           </div>
         </div>
