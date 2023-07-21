@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Badge, Button, Container } from 'react-bootstrap';
 import useCartContext from '../../store/CartContext';
-import './CartView.css';
+import './CartView.css'
 
 const CartView = () => {
   const { cart, removeFromCart, clearCart, getItemQuantity, precioTotal } = useCartContext();
