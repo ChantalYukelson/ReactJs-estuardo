@@ -1,20 +1,17 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Card, Badge, Container } from 'react-bootstrap';
-import useCartContext from '../../store/CartContext';
 import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import './CartView.css';
+import { Card, Badge, Button, Container } from 'react-bootstrap';
+import useCartContext from '../../store/CartContext';
 
-function CartView({ greeting }) {
+const CartView = () => {
   const { cart, removeFromCart, clearCart, itemsTotal, precioTotal } = useCartContext();
 
-  const handleVaciar = () => {
-    // ...
+  const handleRemove = (itemId) => {
+    removeFromCart(itemId);
   };
 
-  const handleRemove = () => {
-    // ...
+  const handleVaciar = () => {
+    clearCart();
   };
 
   if (cart.length === 0) {
@@ -37,7 +34,7 @@ function CartView({ greeting }) {
               <h6>Total de items: {itemsTotal()}</h6>
             </Badge>
             <Badge className="m-3" bg="info">
-              <h6> Costo Total: {precioTotal()} $</h6>
+              <h6>Costo Total: {precioTotal()} $</h6>
             </Badge>
             <div></div>
             <div>
@@ -48,20 +45,20 @@ function CartView({ greeting }) {
         <div className="album py-5">
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3">
-              {cart.map((itemCart) => (
-                <Container key={itemCart.id}>
+              {cart.map((item) => (
+                <Container key={item.id}>
                   <Card className="bg-warning shadow-lg p-3 mb-3 mr-2 ml-2 rounded text-center">
-                    <Card.Title>{itemCart.name} x{itemCart.cant}</Card.Title>
-                    <Card.Img variant="top" src="https://firebasestorage.googleapis.com/v0/b/ojala-fb7c7.appspot.com/o/tour.jpg?alt=media&token=42ad6248-9fc4-4ded-bcda-4b009571a411" alt={itemCart.name} />
+                    <Card.Title>{item.name} x{item.quantity}</Card.Title>
+                    <Card.Img variant="top" src={item.img} alt={item.name} />
                     <Card.Body>
-                      <Card.Text>Categoría: {itemCart.category}</Card.Text>
+                      <Card.Text>Categoría: {item.category}</Card.Text>
                       <Badge className="m-1" bg="success">
-                        <h6>x1 {itemCart.price} $</h6>
+                        <h6>x1 {item.price} $</h6>
                       </Badge>
                       <Badge className="m-1" bg="info">
-                        <h6>x{itemCart.cant} {itemCart.price * itemCart.cant} $</h6>
+                        <h6>x{item.quantity} {item.price * item.quantity} $</h6>
                       </Badge>
-                      <Button onClick={handleRemove} className="btn btn-danger w-50 mt-3">
+                      <Button onClick={() => handleRemove(item.id)} className="btn btn-danger w-50 mt-3">
                         Eliminar
                       </Button>
                     </Card.Body>
@@ -80,6 +77,6 @@ function CartView({ greeting }) {
       </section>
     );
   }
-}
+};
 
 export default CartView;
