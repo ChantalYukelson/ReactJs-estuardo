@@ -9,7 +9,7 @@ import '../../assets/css/animaciones.css'
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 function Acerca() {
-    document.title = 'Ojala Te Enamores Acerca de Nosotros';
+    document.title = 'Estuardo Acerca de Nosotros';
     if(ropa === undefined){
         return <section id="menu" className="py-5 text-center container">
         <div className="album bg-degrade py-5">

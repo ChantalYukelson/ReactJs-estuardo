@@ -27,3 +27,16 @@ cursor: pointer;
 .price-button:hover{
   background-color: lightgray;
 }
+
+/* Agregar el siguiente estilo para reducir el tamaño de los botones */
+.counter-input .btn {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.5rem;
+  min-width: 2rem;
+}
+
+/* Ajustar el tamaño del ícono del carrito */
+.cart-icon2 svg {
+  font-size: 1rem;
+}
+

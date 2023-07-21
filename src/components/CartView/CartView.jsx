@@ -1,7 +1,9 @@
+// CartView.js
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Badge, Button, Container } from 'react-bootstrap';
 import useCartContext from '../../store/CartContext';
+import './CartView.css';
 
 const CartView = () => {
   const { cart, removeFromCart, clearCart, itemsTotal, precioTotal } = useCartContext();
@@ -47,7 +49,8 @@ const CartView = () => {
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3">
               {cart.map((item) => (
                 <Container key={item.id}>
-                  <Card className="bg-warning shadow-lg p-3 mb-3 mr-2 ml-2 rounded text-center">
+                  {/* Reemplazar la clase bg-warning por product-card */}
+                  <Card className="product-card bg-warning shadow-lg p-3 mb-3 mr-2 ml-2 rounded text-center">
                     <Card.Title>{item.name} x{item.quantity}</Card.Title>
                     <Card.Img variant="top" src={item.img} alt={item.name} />
                     <Card.Body>
@@ -72,7 +75,7 @@ const CartView = () => {
           Vaciar carrito
         </Button>
         <Link to="/checkout">
-          <Button className="bg-success m3">Ir al pago</Button>
+          <Button className="bg-success m-3">Ir al pago</Button>
         </Link>
       </section>
     );

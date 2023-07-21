@@ -1,32 +1,84 @@
-import './ItemCount.css'
-import { useState } from 'react'
+import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import Swal from 'sweetalert2';
+import './ItemCount.css';
 
-const ItemCount = ({stock, initial, onAdd}) => {
-    const [quantity, setQuantity] = useState(initial)
-    const increment = () => {
-        if(quantity < stock) {
-            setQuantity(quantity+1)
-        }
+const ItemCount = ({ stock, initial, onAdd, itemName }) => {
+  const [count, setCount] = useState(initial);
+
+  function pluralizeWord(singularWord, pluralWord) {
+    return count > 1 ? pluralWord : singularWord;
+  }
+
+  const handleAgregar = () => {
+    if (count < stock) {
+      setCount(count + 1);
+    } else {
+      const Toast = Swal.mixin({
+        toast: true,
+        background: '#DFA822',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer);
+          toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+      });
+
+      Toast.fire({
+        icon: 'error',
+        title: 'No hay stock suficiente',
+      });
     }
-    const decrement = () => {
-        if(quantity > initial){
-            setQuantity(quantity-1)
-        }
+  };
+
+  const handleRestar = () => {
+    if (count > initial) {
+      setCount(count - 1);
     }
-    return(
-        <div className='Counter'>
-            <div className='Controla'>
-                <button className='Button' onClick={decrement}> - </button>
-                <h4 className='Number'>{quantity}</h4>
-                <button className='Button' onClick={increment}> + </button>
-            </div>
-        <div>
-         <button className='Button' onClick={() => onAdd(quantity)} disabled={!stock}>
-                Agregar al Carrito
-            </button>
-         </div>
+  };
+
+  const handleOnAdd = () => {
+    const Toast = Swal.mixin({
+      toast: true,
+      background: '#DFA822',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: false,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
+    Toast.fire({
+      icon: 'success',
+      title: `${count} ${itemName} ${pluralizeWord('agregada', 'agregadas')} al carrito`,
+    });
+    onAdd(count);
+    setCount(initial);
+  };
+
+  return (
+    <>
+      <div className="d-flex justify-content-center text-center align-items-center contador counter-input input-group mb-3">
+        <div className="input-group-prepend">
+          <Button onClick={handleRestar} className="btn btn-secondary btn-sm">
+            -
+          </Button>
         </div>
-    )
-}
+        <input type="text" className="form-control h-100 text-center" readOnly value={count} />
+        <div className="input-group-append">
+          <Button onClick={handleAgregar} className="btn btn-secondary btn-sm">
+            +
+          </Button>
+        </div>
+        <Button onClick={handleOnAdd} className="btn btn-dark btn-hover-white btn-sm m-2">
+          Agregar al carrito
+        </Button>
+      </div>
+    </>
+  );
+};
 
-export default ItemCount
+export default ItemCount;
