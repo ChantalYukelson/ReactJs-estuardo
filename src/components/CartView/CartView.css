@@ -1,14 +1,12 @@
-/* CartView.css */
 .product-card {
-        background-color: #000 !important;
-        color: #fff;
-      }
-      
-      .product-card h6 {
-        color: #fff;
-      }
-      
-      .product-card img {
-        max-width: 100%;
-      }
-      
+  background-color: #000 !important;
+  color: #fff;
+}
+
+.product-card h6 {
+  color: #fff;
+}
+
+.product-card img {
+  max-width: 100%;
+}

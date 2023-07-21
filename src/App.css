@@ -48,25 +48,4 @@
           animation-duration: 4s;
 }
 
-.back3 {
-  -webkit-animation-duration: 5s;
-          animation-duration: 5s;
-}
 
-@-webkit-keyframes slide {
-  0% {
-    transform: translateX(-25%);
-  }
-  100% {
-    transform: translateX(25%);
-  }
-}
-
-@keyframes slide {
-  0% {
-    transform: translateX(-25%);
-  }
-  100% {
-    transform: translateX(25%);
-  }
-}
