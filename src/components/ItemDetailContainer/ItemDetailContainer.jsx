@@ -1,51 +1,48 @@
+// ItemDetailContainer.js
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ItemDetail from "../ItemDetail/ItemDetail"; // Importar desde "../ItemDetail" en lugar de "../ItemDetail/ItemDetail"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import ItemDetail from "../ItemDetail/ItemDetail";
+import LoadingSpinner from "../LoadingSpinner/index";
 import { db } from "../../services/FireStore";
 import { doc, getDoc } from "firebase/firestore";
 
-async function getProducto(itemid) {
-  try {
-    const itemRef = doc(db, "items", itemid);
-    const itemSnapshot = await getDoc(itemRef);
-
-    if (itemSnapshot.exists()) {
-      return itemSnapshot.data();
-    } else {
-      throw new Error("El producto no fue encontrado.");
-    }
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-}
-
 function ItemDetailContainer() {
-  const [producto, setProducto] = useState({});
   const { itemid } = useParams();
+  const [producto, setProducto] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProducto(itemid)
-      .then(respuestaPromise => {
-        setProducto(respuestaPromise);
-      })
-      .catch(error => {
+    async function getProducto(itemid) {
+      try {
+        const itemRef = doc(db, "clothes", itemid); // Update collection name here
+        const itemSnapshot = await getDoc(itemRef);
+
+        if (itemSnapshot.exists()) {
+          setProducto(itemSnapshot.data());
+        } else {
+          throw new Error("El producto no fue encontrado.");
+        }
+      } catch (error) {
         console.error(error);
-      });
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getProducto(itemid);
   }, [itemid]);
 
-  return (
-    <section id="menu" className="text-center container">
-      <div className="album bg-degrade">
-        <div className="container">
-          <div className="">
-            <ItemDetail detalle={producto} />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return <ItemDetail detalle={producto} />;
 }
 
 export default ItemDetailContainer;
