@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Badge, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import useCartContext from '../../store/CartContext';
+import { useCartContext } from "../../store/CartContext";
 import ItemCount from '../ItemCount/ItemCount';
 import './Item.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

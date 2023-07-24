@@ -11,7 +11,7 @@ import CheckOut from './pages/CheckOut/index';
 import Inicio from './pages/Inicio/index';
 import Acerca from './pages/Acerca/index';
 import Contacto from './pages/Contacto/index';
-import firebaseApp from './services/FireStore';
+
 
 function App() {
   return (
@@ -37,7 +37,6 @@ function App() {
               </div>
             </div>
           </main>
-        
         </HashRouter>
       </CartContextProvider>
     </>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Badge, Button, Container } from 'react-bootstrap';
-import useCartContext from '../../store/CartContext';
-import './CartView.css'
+import { useCartContext } from "../../store/CartContext";
+import './CartView.css';
 
 const CartView = () => {
   const { cart, removeFromCart, clearCart, getItemQuantity, precioTotal } = useCartContext();
@@ -15,7 +15,7 @@ const CartView = () => {
     clearCart();
   };
 
-  if (cart.length === 0) {
+  if (!cart || cart.length === 0) {
     return (
       <section id="Carrito" className="py-5 text-center container">
         <div className="row py-lg-5">
@@ -47,24 +47,21 @@ const CartView = () => {
           <div className="container">
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 g-3">
               {cart.map((item) => (
-                <Container key={item.id}>
-                  {/* Reemplazar la clase bg-warning por product-card */}
-                  <Card className="product-card bg-warning shadow-lg p-3 mb-3 mr-2 ml-2 rounded text-center">
-                    <Card.Title>{item.name} x{getItemQuantity(item.id)}</Card.Title>
-                    <Card.Img variant="top" src={item.img} alt={item.name} />
-                    <Card.Body>
-                      <Badge className="m-1" bg="success">
-                        <h6>x1 {item.price} $</h6>
-                      </Badge>
-                      <Badge className="m-1" bg="info">
-                        <h6>x{getItemQuantity(item.id)} {item.price * getItemQuantity(item.id)} $</h6>
-                      </Badge>
-                      <Button onClick={() => handleRemove(item.id)} className="btn btn-danger w-50 mt-3">
-                        Eliminar
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Container>
+                <Card key={item.id} className="product-card bg-warning shadow-lg p-3 mb-3 mr-2 ml-2 rounded text-center">
+                  <Card.Title>{item.name} x{getItemQuantity(item.id)}</Card.Title>
+                  <Card.Img variant="top" src={item.img} alt={item.name} />
+                  <Card.Body>
+                    <Badge className="m-1" bg="success">
+                      <h6>x1 {item.price} $</h6>
+                    </Badge>
+                    <Badge className="m-1" bg="info">
+                      <h6>x{getItemQuantity(item.id)} {item.price * getItemQuantity(item.id)} $</h6>
+                    </Badge>
+                    <Button onClick={() => handleRemove(item.id)} className="btn btn-danger w-50 mt-3">
+                      Eliminar
+                    </Button>
+                  </Card.Body>
+                </Card>
               ))}
             </div>
           </div>

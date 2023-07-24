@@ -3,15 +3,14 @@ import { Badge, Container, Breadcrumb } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../LoadingSpinner/";
-import useCartContext from "../../store/CartContext";
+import { CartContextProvider, useCartContext } from "../../store/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import "../../assets/css/animaciones.css";
 
-
 function ItemDetail({ detalle }) {
   const [isInCart, setIsInCart] = useState(false);
-  const { addToCart, estaEnCarrito, cartItems } = useCartContext();
+  const { addToCart, estaEnCarrito, cart } = useCartContext();
 
   useEffect(() => {
     if (detalle) {
@@ -25,7 +24,7 @@ function ItemDetail({ detalle }) {
   }
 
   function getItemQuantity(itemId) {
-    const cartItem = cartItems.find((item) => item.id === itemId);
+    const cartItem = cart.find((item) => item.id === itemId);
     return cartItem ? cartItem.cant : 0;
   }
 
@@ -33,7 +32,7 @@ function ItemDetail({ detalle }) {
     return <LoadingSpinner />;
   }
 
-  document.title = `Estuardo ${detalle.category}/${detalle.nombre}`;
+  document.title = `Estuardo /${detalle.name}`;
 
   return (
     <>
@@ -45,13 +44,8 @@ function ItemDetail({ detalle }) {
           <Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
             catálogo
           </Breadcrumb.Item>
-          <Breadcrumb.Item
-            linkAs={Link}
-            linkProps={{ to: `/category/${detalle.category}` }}
-          >
-            {detalle.category}
-          </Breadcrumb.Item>
-          <Breadcrumb.Item active>{detalle.nombre}</Breadcrumb.Item>
+       
+          <Breadcrumb.Item active>{detalle.name}</Breadcrumb.Item>
         </Breadcrumb>
       </Container>
       <div className="container bootstrap snippets bootdey slide-in-fwd-center">
@@ -82,7 +76,7 @@ function ItemDetail({ detalle }) {
             </span>
             <img
               src={detalle.img}
-              alt={detalle.nombre}
+              alt={detalle.name}
               className="img-fluid push-bit align-middle h-100"
             />
             {isInCart ? (
@@ -99,13 +93,10 @@ function ItemDetail({ detalle }) {
             <div className="clearfix py-3">
               <div className="pull-right">
                 <h1>
-                  <strong className="text-success">{detalle.nombre}</strong>
+                  <strong className="text-success">{detalle.name}</strong>
                   <br />
                 </h1>
-                <h3>
-                  <strong className="text-success">{detalle.category}</strong>
-                  <br />
-                </h3>
+              
                 <span className="h2">
                   <strong>
                     <Badge bg="success">Precio {detalle.price}$</Badge>
@@ -128,7 +119,7 @@ function ItemDetail({ detalle }) {
               onAdd={onAdd}
               stock={detalle.stock}
               initial={1}
-              itemName={detalle.nombre}
+              itemName={detalle.name}
             />
           </div>
         </div>
@@ -138,3 +129,4 @@ function ItemDetail({ detalle }) {
 }
 
 export default ItemDetail;
+

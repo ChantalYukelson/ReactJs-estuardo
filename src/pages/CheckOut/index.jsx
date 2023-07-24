@@ -3,7 +3,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../services/FireStore";
 import TextField from "@mui/material/TextField";
 import MessageSuccess from "../../MessageSuccess/MessageSuccess";
-import useCartContext from "../../store/CartContext"; // Importa el contexto CartContext
+import { useCartContext } from "../../store/CartContext"; // Importa el contexto CartContext
 
 const styles = {
   containerShop: {
