@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Badge, Button, Container } from 'react-bootstrap';
+import { Card, Badge, Button } from 'react-bootstrap';
 import { useCartContext } from "../../store/CartContext";
 import './CartView.css';
 
 const CartView = () => {
-  const { cart, removeFromCart, clearCart, getItemQuantity, precioTotal } = useCartContext();
+  const { cart, removeFromCart, clearCart, getItemQuantity, precioTotal, itemsTotal } = useCartContext();
 
   const handleRemove = (itemId) => {
     removeFromCart(itemId);
@@ -32,7 +32,7 @@ const CartView = () => {
         <div className="row py-lg-2">
           <div>
             <Badge bg="info" className="m-1">
-              <h6>Total de items: {cart.length}</h6>
+              <h6>Total de items: {itemsTotal()}</h6>
             </Badge>
             <Badge className="m-3" bg="info">
               <h6>Costo Total: {precioTotal()} $</h6>

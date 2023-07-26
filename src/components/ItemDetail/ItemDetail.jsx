@@ -3,7 +3,7 @@ import { Badge, Container, Breadcrumb } from "react-bootstrap";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../LoadingSpinner/";
-import { CartContextProvider, useCartContext } from "../../store/CartContext";
+import { useCartContext } from "../../store/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import "../../assets/css/animaciones.css";
